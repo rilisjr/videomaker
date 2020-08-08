@@ -1,8 +1,16 @@
 const readLine = require('readline-sync')
-function start() { 
+const robots = {
+    text: require('./robots/text.js')
+}
+
+async function start() { 
     const content = {} //content nesse caso é o termo digitado
+    
     content.searchTerm = askAndReturnSearchTerm()
     content.prefix = askAndReturnPrefix()
+
+    await robots.text(content)
+
     //quando executar a função "ask..." ele irá injetar um valor dentro do search
     function askAndReturnSearchTerm()  {
         return readLine.question('Digite o que deseja procurar na wikipedia: ')
@@ -15,8 +23,7 @@ function start() {
 
          return selectedPrefixText
     }
-
-console.log()
+    console.log(content)
 }
 
 start()
